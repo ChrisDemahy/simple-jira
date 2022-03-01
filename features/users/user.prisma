@@ -1,0 +1,30 @@
+
+
+enum Role {
+  SERVICEDESK
+  USER
+  ADMIN
+}
+
+model User {
+  id                String    @id @unique @default(uuid())
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  // User information
+  email             String    @unique
+  firstName         String
+  lastName          String
+  // User role in the system. Admins can create projects, etc
+  role              Role      @default(USER)
+  // comments the user has created across all issues
+  comments          Comment[]
+
+}
+
+// Alias Models (Relations)
+model Comment {
+  id String @id @unique @default(uuid())
+  // Comments are created by users
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+}

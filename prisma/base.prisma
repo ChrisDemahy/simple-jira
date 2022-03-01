@@ -1,0 +1,20 @@
+// This is the base Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Merged with Prismix
+// https://github.com/jamiepine/prismix
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// datasource db {
+//   provider = "sqlite"
+//   url      = "file:./dev.db"
+// }
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+

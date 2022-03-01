@@ -1,0 +1,11 @@
+model Project {
+  id          String   @id @unique @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  // Project information
+  name        String
+  description String?
+  // logo image, etc
+  // creator User (only Admin)
+  // users User[]
+}

@@ -1,0 +1,9 @@
+
+// Comments are created by users and are for communication and to document work
+model Comment {
+  id        String   @id @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+
+}

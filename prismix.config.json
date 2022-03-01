@@ -1,0 +1,14 @@
+{
+    "mixers": [
+      {
+          "input": [
+              "prisma/base.prisma",
+              "./features/projects/project.prisma", 
+              "./features/users/user.prisma",
+              "./features/issues/issue.prisma",
+              "./features/comments/comment.prisma"
+          ],
+          "output": "prisma/schema.prisma"
+      }
+    ]
+  }
