@@ -1,0 +1,15 @@
+model UserData {
+    id        String   @id @unique @default(uuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    // User information
+    mail      String   @unique
+    firstName String?
+    lastName  String?
+    address   String?
+    city      String?
+    office    String?
+    phone     String?
+    ipPhone   String?
+    mobile    Int?
+}

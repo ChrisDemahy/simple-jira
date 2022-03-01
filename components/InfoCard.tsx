@@ -1,21 +1,41 @@
+import { INSPECT_MAX_BYTES } from 'buffer';
 import React from 'react';
 /**
- * @name InfoCardProps
+ * @param label the name or heading of the value being displayed
+ * @param value the string to be shwed on the right side of the value
+ * @param boxed whether or not he value is itself in a gray box
+ */
+export interface DataValue {
+  label: string;
+  value: string;
+  boxed: boolean;
+}
+/**
  * @description Interface for the props for Info Card
+ * @param title the title or heading of the Info card
+ * @param data  the data to be displayed
  */
 export interface InfoCardProps {
   title: string;
-  data: string[];
+  data: DataValue[];
 }
+
 /**
- * @name InfoCard
- * @description React component for displaying sections of information
+ * @description React component for displaying sections of information in a grey box
  * @param props the data going to be displayed
  */
 export const InfoCard: React.FC<InfoCardProps> = (props) => {
   return (
-    <div className="bg-gray-400 border-gray-500 border-solid border-2 max-w-fit">
-      <span>{props.title}</span>
+    <div className="bg-gray-300 border-gray-500 border-solid border-2 max-w-fit">
+      {/* Title */}
+      <span className="px-10 py-1">{props.title}</span>
+      {/* The data points */}
+      {props.data.map((item, i) => (
+        <div key={i} className="grid grid-cols-2 gap-32">
+          <span className="pl-3 pr-15 py-3 text-sm">{item.label}</span>
+          <span className="pr-3 pl-15 py-3 text-sm">{item.value}</span>
+        </div>
+      ))}
     </div>
   );
 };

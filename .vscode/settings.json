@@ -1,0 +1,6 @@
+{
+  "prettier.configPath": ".prettierrc",
+  "prettier.resolveGlobalModules": true,
+  "prettier.singleQuote": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
