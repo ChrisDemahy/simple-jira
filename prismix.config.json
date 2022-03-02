@@ -10,6 +10,7 @@
         "features/site/site.prisma",
         "features/category/category.prisma"
       ],
+
       "output": "prisma/schema.prisma"
     }
   ]
