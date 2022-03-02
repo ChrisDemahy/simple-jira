@@ -69,7 +69,8 @@ model Issue {
 
 
   // Project
-
+  project Project @relation("ProjectIssue", fields: [projectId], references: [id])
+  projectId String 
   // comments by users regarding the ticket
   comments  Comment[]
 
@@ -86,7 +87,7 @@ model Issue {
   model Project {
     id String @id @unique @default(uuid())
     // A project has issues that track work done on the project
-    issues Issue[]
+    issues Issue[] @relation("ProjectIssue")
   }
     model User {
     id String @id @unique @default(uuid())

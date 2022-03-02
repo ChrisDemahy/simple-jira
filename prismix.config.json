@@ -3,12 +3,12 @@
     {
       "input": [
         "prisma/base.prisma",
-        "./features/projects/project.prisma",
-        "./features/users/user.prisma",
-        "./features/issues/issue.prisma",
-        "./features/comments/comment.prisma",
-        "./features/sites/site.prisma",
-        "./features/category/category.prisma"
+        "features/project/project.prisma",
+        "features/user/user.prisma",
+        "features/issue/issue.prisma",
+        "features/comment/comment.prisma",
+        "features/site/site.prisma",
+        "features/category/category.prisma"
       ],
       "output": "prisma/schema.prisma"
     }

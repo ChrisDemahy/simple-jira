@@ -5,29 +5,95 @@ model Project {
   updatedAt   DateTime @updatedAt
   name        String
   description String?
+  issues      Issue[]  @relation(name: "ProjectIssue")
 }
 
 model User {
-  id        String    @id @unique @default(uuid())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  email     String    @unique
-  firstName String
-  lastName  String
-  role      Role      @default(USER)
-  comments  Comment[] @relation(name: "CommentToUser")
+  id                String    @id @unique @default(uuid())
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  email             String    @unique
+  firstName         String
+  lastName          String
+  role              Role      @default(USER)
+  comments          Comment[] @relation(name: "CommentToUser")
+  reporterIssues    Issue[]   @relation(name: "IssueReporters")
+  participantIssues Issue[]   @relation(name: "IssueParticipants")
+  Issue             Issue[]   @relation(name: "AssignedUser")
+  watchedIssues     Issue[]   @relation(name: "WatchingUsers")
 }
 
 model Comment {
   id        String   @id @unique @default(uuid())
   user      User     @relation(name: "CommentToUser", fields: [userId], references: [id])
   userId    String
+  issue     Issue    @relation(name: "CommentToIssue", fields: [issueId], references: [id])
+  issueId   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Issue {
+  id           String        @id @unique @default(uuid())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  summary      String
+  description  String?
+  status       IssueStatus   @default(CREATED)
+  type         IssueType     @default(EMAILREQUEST)
+  priority     IssuePriority @default(MINOR)
+  it4it        Boolean       @default(false)
+  reporter     User          @relation(name: "IssueReporters", fields: [reporterId], references: [id])
+  reporterId   String
+  participants User[]        @relation(name: "IssueParticipants")
+  assignee     User?         @relation(name: "AssignedUser", fields: [assigneeId], references: [id])
+  assigneeId   String
+  watchers     User[]        @relation(name: "WatchingUsers")
+  project      Project       @relation(name: "ProjectIssue", fields: [projectId], references: [id])
+  projectId    String
+  comments     Comment[]     @relation(name: "CommentToIssue")
+}
+
+model Site {
+  id        String   @id @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  siteName  String
+  siteCode  String
+}
+
+model Category {
+  id        String   @id @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
 }
 
 enum Role {
   SERVICEDESK
   USER
   ADMIN
+}
+
+enum IssueStatus {
+  CREATED
+  OPEN
+  PENDINGSUPPORT
+  INPROGRESS
+  RESOLVED
+  CLOSED
+}
+
+enum IssuePriority {
+  LOW
+  MINOR
+  MAJOR
+  BLOCKING
+}
+
+enum IssueType {
+  EMAILREQUEST
+  PHONEREQUEST
+  SERVICEREQUEST
+  INCIDENT
 }

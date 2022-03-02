@@ -22,7 +22,8 @@ export interface InfoCardProps {
 
 /**
  * @description React component for displaying sections of information in a grey box
- * @param props the data going to be displayed
+ * @param props.title the title of the card
+ * @param props.data the data going to be displayed
  */
 export const InfoCard: React.FC<InfoCardProps> = (props) => {
   return (
