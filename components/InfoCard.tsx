@@ -27,13 +27,15 @@ export interface InfoCardProps {
  */
 export const InfoCard: React.FC<InfoCardProps> = (props) => {
   return (
-    <div className="bg-gray-300 border-gray-500 border-solid border-2 max-w-fit">
+    <div className="bg-gray-100 border-gray-300 border-solid border-2 max-w-fit rounded">
       {/* Title */}
       <span className="px-10 py-1">{props.title}</span>
       {/* The data points */}
       {props.data.map((item, i) => (
         <div key={i} className="grid grid-cols-2 gap-32">
-          <span className="pl-3 pr-15 py-3 text-sm">{item.label}</span>
+          <span className="pl-3 pr-15 py-3 text-gray-400 text-xsm">
+            {item.label}
+          </span>
           <span className="pr-3 pl-15 py-3 text-sm">{item.value}</span>
         </div>
       ))}
