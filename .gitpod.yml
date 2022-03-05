@@ -1,0 +1,21 @@
+image:
+  file: .gitpod.Dockerfile
+tasks:
+  - name: Database
+    init: >
+      sudo apt-get install postgresql
+    command: >
+      sudo service postgresql start
+    openMode: split-left
+
+  - name: Redis
+    init: >
+      sudo apt-get install redis  
+    command: sudo service redis start
+    openMode: tab-after
+
+  - name: format
+    init: >
+      yarn install
+    command: yarn run dev:watch
+    openMode: split-right

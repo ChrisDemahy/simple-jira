@@ -3,14 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prismix": "yarn exec prismix && yarn exec prisma format",
+    "prismix": "yarn exec prismix && yarn exec prisma format && yarn exec prisma generate",
+    "prismix:watch": "npx onchange '**/*.prisma' -e '.next' -- yarn exec prismix && yarn exec prisma format && yarn exec prisma generate",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:watch": "npx onchange\"**/*\" -- next lint ",
-    "format": "prettier --write --ignore-unknown {{changed}}",
-    "format:watch": "npx onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}"
+    "lint:watch": "npx onchange '**/*' -e '.next' -- next lint ",
+    "format": "yarn prettier --write --ignore-unknown",
+    "format:watch": "npx onchange '**/*' -e '.next' -- yarn format {{changed}}",
+    "dev:watch": "npx concurrently -n 'NEXT,ESLINT,PRETTIER,PRISMIX' -c 'bgBlue.bold,bgMagenta.bold,bgGreen.bold,bgRed.bold' 'yarn run dev' 'yarn run lint:watch ' 'yarn run format:watch' 'yarn run prismix:watch'"
   },
   "dependencies": {
     "@atlaskit/breadcrumbs": "^11.5.3",
@@ -29,8 +31,10 @@
     "@types/node": "17.0.21",
     "@types/react": "17.0.39",
     "autoprefixer": "^10.4.2",
+    "concurrently": "^7.0.0",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
+    "onchange": "^7.1.0",
     "postcss": "^8.4.7",
     "prettier": "^2.5.1",
     "prisma": "^3.10.0",
