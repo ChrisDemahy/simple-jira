@@ -4,21 +4,18 @@ tasks:
   - name: Database
     init: >
       sudo apt-get install postgresql
-      gp sync-done db
     command: >
       sudo service postgresql start
     openMode: split-left
 
   - name: Redis
     init: >
-      sudo apt-get install redis
-      gp sync-done redis
+      sudo apt-get install redis  
     command: sudo service redis start
+    openMode: tab-after
 
   - name: format
     init: >
       yarn install
-      gp sync-await redis # wait for the above 'init's to finish
-      gp sync-await db
     command: yarn run dev:watch
     openMode: split-right
