@@ -6,22 +6,32 @@ tasks:
       sudo apt-get install postgresql
     command: >
       sudo service postgresql start
-    openMode: split-left
 
   - name: Redis
     init: >
       sudo apt-get install redis
     command: sudo service redis-server start
-    openMode: tab-before
+  - name: global packages
+    init: >
+      yarn
+      yarn global add next heroku 
+      gp sync-done global
 
   - name: format
     init: >
-      yarn
+      gp sync-await global
     command: yarn run prisma:watch
-    openMode: split-right
 
   - name: dev
     init: >
-      yarn
+      gp sync-await global
     command: yarn run dev:watch
-    openMode: tab-after
+github:
+  prebuilds:
+    master: true
+    branches: true
+    pullRequests: true
+    pullRequestsFromForks: true
+    addCheck: false
+    addComment: false
+    addBadge: true
