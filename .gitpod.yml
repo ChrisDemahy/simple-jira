@@ -11,19 +11,21 @@ tasks:
     init: >
       sudo apt-get install redis
     command: sudo service redis-server start
+  
   - name: global packages
     init: >
+      yarn
       yarn global add next heroku 
       gp sync-done global
 
   - name: format
     init: >
-      yarn
+      gp sync-await global
     command: yarn run prisma:watch
 
   - name: dev
     init: >
-      yarn
+      gp sync-await global
     command: yarn run dev:watch
 github:
   prebuilds:
