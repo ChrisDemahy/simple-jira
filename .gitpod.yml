@@ -14,7 +14,7 @@ tasks:
   
   - name: global packages
     init: >
-      yarn
+      yarn &&
       yarn global add next heroku 
       gp sync-done global
 
