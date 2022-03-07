@@ -2,6 +2,9 @@ model UserData {
     id        String   @id @unique @default(uuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+    // User
+    user      User?    @relation("UserInformationFields")
+    userId    String   @unique
     // User information
     mail      String   @unique
     firstName String?
@@ -12,4 +15,10 @@ model UserData {
     phone     String?
     ipPhone   String?
     mobile    Int?
+}
+
+model User {
+    id                String   @id @unique @default(uuid())
+    userInformation   UserData @relation("UserInformationFields", fields: [userInformationId], references: [id])
+    userInformationId String   @unique
 }

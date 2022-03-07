@@ -1,0 +1,5 @@
+# Don't run onchange on build directories
+.out
+.next
+# Don't run onchange on the output prisma file
+schema.prisma

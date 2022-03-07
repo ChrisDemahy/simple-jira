@@ -24,6 +24,12 @@
         "uriFormat": "%s",
         "action": "debugWithChrome"
       }
+    },
+    {
+      "name": "Launch Edge",
+      "request": "launch",
+      "type": "vscode-edge-devtools.debug",
+      "url": "http://localhost:3000" // Provide your project's url to finish configuring
     }
   ]
 }

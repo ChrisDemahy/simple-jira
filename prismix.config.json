@@ -5,6 +5,7 @@
         "prisma/base.prisma",
         "features/project/project.prisma",
         "features/user/user.prisma",
+        "features/userData/userData.prisma",
         "features/issue/issue.prisma",
         "features/comment/comment.prisma",
         "features/site/site.prisma",
