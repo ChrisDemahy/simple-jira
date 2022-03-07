@@ -10,12 +10,18 @@ tasks:
 
   - name: Redis
     init: >
-      sudo apt-get install redis  
+      sudo apt-get install redis
     command: sudo service redis start
-    openMode: tab-after
+    openMode: tab-before
 
   - name: format
     init: >
-      yarn install
-    command: yarn run dev:watch
+      yarn
+    command: yarn run prisma:watch
     openMode: split-right
+
+  - name: dev
+    init: >
+      yarn
+    command: yarn run dev:watch
+    openMode: tab-after
