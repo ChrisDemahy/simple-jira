@@ -13,7 +13,6 @@ tasks:
   - name: Install packages
     init: >
       yarn &&
-      yarn global add next heroku &&
       gp sync-done install
 
   - name: Format
