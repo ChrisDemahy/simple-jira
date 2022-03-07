@@ -11,7 +11,7 @@ tasks:
   - name: Redis
     init: >
       sudo apt-get install redis
-    command: sudo service redis start
+    command: sudo service redis-server start
     openMode: tab-before
 
   - name: format
