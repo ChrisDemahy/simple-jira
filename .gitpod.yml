@@ -4,33 +4,23 @@ tasks:
   - name: Database
     init: >
       sudo apt-get install postgresql
-    command: >
-      sudo service postgresql start
+    command: sudo service postgresql start
 
   - name: Redis
-    init: >
-      sudo apt-get install redis
+    init: sudo apt-get install redis
     command: sudo service redis-server start
   
-  - name: Install local packages
+  - name: Install packages
     init: >
       yarn &&
-      gp sync-done local
+      gp sync-done install
 
-  - name: Install global packages
-    init: >
-      yarn global add next heroku &&
-      gp sync-done global
-
-  - name: format
-    init: >
-      gp sync-await local
+  - name: Format
+    init: gp sync-await install
     command: yarn run prisma:watch
 
   - name: dev
-    init: >
-      gp sync-await local &&
-      gp sync-await global
+    init: gp sync-await install
     command: yarn run dev:watch
     
 github:
